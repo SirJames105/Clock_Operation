@@ -1,0 +1,353 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Scripts/TimeDisplay.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/TerminalDosis-ExtraLight.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/ResetTimeButton.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Clock.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/UndoText.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/TimeChangedLabel.gd" type="Script" id=6]
+[ext_resource path="res://Fonts/Time_Display_Font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Scenes/FillerButton.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/FillerLabel.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=13]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 45
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 45
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+use_filter = true
+extra_spacing_top = -7
+extra_spacing_char = -5
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 39
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 73
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 18
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 36
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 45
+font_data = ExtResource( 2 )
+
+[node name="Main_Clock" type="Timer"]
+wait_time = 0.1
+script = ExtResource( 4 )
+
+[node name="Undo_Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="FillerLabel" type="RichTextLabel" parent="Control"]
+margin_left = 266.0
+margin_top = 516.0
+margin_right = 788.0
+margin_bottom = 582.0
+custom_fonts/normal_font = SubResource( 13 )
+text = "Please stop pressing this button."
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeChangedLabel" type="RichTextLabel" parent="Control"]
+margin_left = 279.0
+margin_top = 108.0
+margin_right = 713.0
+margin_bottom = 170.0
+custom_fonts/normal_font = SubResource( 9 )
+text = "test"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeChangedTimer" type="Timer" parent="Control/TimeChangedLabel"]
+wait_time = 1.2
+one_shot = true
+
+[node name="TimeDisplay" type="RichTextLabel" parent="Control"]
+margin_left = 250.0
+margin_top = 265.0
+margin_right = 750.0
+margin_bottom = 366.0
+custom_fonts/normal_font = ExtResource( 7 )
+text = "00:00:00:00:00"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToggleButton" type="Button" parent="Control"]
+margin_right = 220.0
+margin_bottom = 180.0
+custom_fonts/font = SubResource( 2 )
+text = "Toggle Cycle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetTimeButton" type="Button" parent="Control"]
+margin_left = 804.0
+margin_right = 1024.0
+margin_bottom = 180.0
+custom_fonts/font = SubResource( 5 )
+text = "Reset Time"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UndoText" type="RichTextLabel" parent="Control/ResetTimeButton"]
+margin_left = 80.0
+margin_top = 174.0
+margin_right = 138.0
+margin_bottom = 226.0
+custom_fonts/normal_font = SubResource( 6 )
+visible_characters = 3
+text = "0.0"
+scroll_active = false
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Change_Time_Buttons" type="Node" parent="Control"]
+
+[node name="YAButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 279.0
+margin_top = 258.0
+margin_right = 356.0
+margin_bottom = 327.0
+rect_rotation = -90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DAButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 366.0
+margin_top = 258.0
+margin_right = 443.0
+margin_bottom = 327.0
+rect_rotation = -90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HAButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 461.0
+margin_top = 259.0
+margin_right = 538.0
+margin_bottom = 328.0
+rect_rotation = -90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MAButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 554.0
+margin_top = 259.0
+margin_right = 631.0
+margin_bottom = 328.0
+rect_rotation = -90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SAButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 649.0
+margin_top = 259.0
+margin_right = 726.0
+margin_bottom = 328.0
+rect_rotation = -90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YSButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 350.0
+margin_top = 375.0
+margin_right = 427.0
+margin_bottom = 444.0
+rect_rotation = 90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DSButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 440.0
+margin_top = 376.0
+margin_right = 517.0
+margin_bottom = 445.0
+rect_rotation = 90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 531.0
+margin_top = 376.0
+margin_right = 608.0
+margin_bottom = 445.0
+rect_rotation = 90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MSButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 622.0
+margin_top = 375.0
+margin_right = 699.0
+margin_bottom = 444.0
+rect_rotation = 90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SSButton" type="Button" parent="Control/Change_Time_Buttons"]
+margin_left = 716.0
+margin_top = 374.0
+margin_right = 793.0
+margin_bottom = 443.0
+rect_rotation = 90.0
+custom_fonts/font = SubResource( 4 )
+text = " >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeLabel" type="RichTextLabel" parent="Control"]
+margin_left = 279.0
+margin_top = 448.0
+margin_right = 718.0
+margin_bottom = 518.0
+custom_fonts/normal_font = SubResource( 7 )
+text = "   Y         D        H         M         S"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="RichTextLabel" parent="Control"]
+margin_left = 285.0
+margin_top = 3.0
+margin_right = 721.0
+margin_bottom = 109.0
+custom_fonts/normal_font = SubResource( 10 )
+text = "Clock Operation"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SubTitle" type="RichTextLabel" parent="Control/Title"]
+visible = false
+margin_left = 334.0
+margin_top = 78.0
+margin_right = 423.0
+margin_bottom = 118.0
+custom_fonts/normal_font = SubResource( 14 )
+text = "Pre-Alpha 1"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TimeFormatButton" type="Button" parent="Control"]
+margin_top = 420.0
+margin_right = 220.0
+margin_bottom = 600.0
+custom_fonts/font = SubResource( 11 )
+text = "Change Format"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FillerButton" type="Button" parent="Control"]
+margin_left = 804.0
+margin_top = 420.0
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_fonts/font = SubResource( 12 )
+text = "Filler"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FillerTimer" type="Timer" parent="Control/FillerButton"]
+wait_time = 0.75
+
+[connection signal="timeout" from="." to="." method="_on_DN_Cycle_timeout"]
+[connection signal="undo_text_start" from="." to="Control/ResetTimeButton/UndoText" method="_on_Main_Clock_undo_text_start"]
+[connection signal="timeout" from="Undo_Timer" to="Control/ResetTimeButton" method="_on_Undo_Timer_timeout"]
+[connection signal="timeout" from="Control/TimeChangedLabel/TimeChangedTimer" to="Control/TimeChangedLabel" method="_on_TimeChangedTimer_timeout"]
+[connection signal="pressed" from="Control/ToggleButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Control/ResetTimeButton" to="." method="_on_ResetTimeButton_pressed"]
+[connection signal="pressed" from="Control/ResetTimeButton" to="Control/ResetTimeButton" method="_on_ResetTimeButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/YAButton" to="." method="_on_YAButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/DAButton" to="." method="_on_DAButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/HAButton" to="." method="_on_HAButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/MAButton" to="." method="_on_MAButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/SAButton" to="." method="_on_SAButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/YSButton" to="." method="_on_YSButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/DSButton" to="." method="_on_DSButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/HSButton" to="." method="_on_HSButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/MSButton" to="." method="_on_MSButton_pressed"]
+[connection signal="pressed" from="Control/Change_Time_Buttons/SSButton" to="." method="_on_SSButton_pressed"]
+[connection signal="pressed" from="Control/TimeFormatButton" to="Control/TimeDisplay" method="_on_TimeFormatButton_pressed"]
+[connection signal="pressed" from="Control/FillerButton" to="Control/FillerButton" method="_on_FillerButton_pressed"]
+[connection signal="timeout" from="Control/FillerButton/FillerTimer" to="Control/FillerLabel" method="_on_FillerTimer_timeout"]
